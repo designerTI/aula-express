@@ -67,7 +67,8 @@ var Controler = {
    },
 
    delete: function(req, res){
-      var query = {name: /skol/i};
+       var query = {_id: req.params.id};
+
 
       Model.remove(query, function(err, data){
          if (err){
