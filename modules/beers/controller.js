@@ -50,6 +50,42 @@ var Controler = {
       });
    },
 
+   list: function(req, res){
+      var query = {};
+
+      Model.find(query, function(err, data){
+         if (err){
+         console.log("erro", err);
+         msg = err;
+         } else {
+            console.log("Listagem: ", data);
+            msg = data;
+         }
+        // console.log(data);
+         res.render('list', { 
+          title: 'Listagem de cervejas',
+          beers: data });
+      });
+   },
+
+   mostra: function(req, res){
+       var query = {_id: req.params.id};
+
+      Model.findOne(query, function(err, data){
+         if (err){
+         console.log("erro", err);
+         msg = err;
+         } else {
+            console.log("Listagem: ", data);
+            msg = data;
+         }
+        //console.log(data);
+         res.render('mostra', { 
+          title: 'Cerveja',
+          beer: data });
+      });
+   },
+
    get: function(req, res){
       var query = {_id: req.params.id};
 
