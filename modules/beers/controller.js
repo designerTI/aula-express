@@ -1,14 +1,8 @@
 var Model = require('./model');
 
 var Controler = {
-   create: function(res, req){
-      var dados = {
-        name: "Skol",
-        description: "Mijo de rato",
-        alcohol: 4.5,
-        price: 3.0,
-        category: "pilsen"
-     };
+   create: function(req, res){
+      var dados = req.body;
 
      var model = new Model(dados);
 
@@ -24,7 +18,7 @@ var Controler = {
       res.json(msg);
      });
    },
-   update: function(res, req){
+   update: function(req, res){
      var query = {name: /skol/i};
      var mod = {
          name: "Brahma",
@@ -50,7 +44,7 @@ var Controler = {
       res.json(msg);
      });
    },
-   retrieve: function(res, req){
+   retrieve: function(req, res){
       var query = {};
 
       Model.find(query, function(err, data){
@@ -65,7 +59,7 @@ var Controler = {
          res.json(msg);
       });
    },
-   delete: function(res, req){
+   delete: function(req, res){
       var query = {name: /skol/i};
 
       Model.remove(query, function(err, data){

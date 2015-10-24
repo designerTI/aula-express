@@ -5,9 +5,12 @@ var Controller = require('./../controller')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	Controller.retrieve(res, req);
+	Controller.retrieve(req, res);
 });
 
+router.post('/', function(req, res, next) {
+	Controller.create(req, res);
+});
 
 
 module.exports = router;
