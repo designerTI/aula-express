@@ -19,20 +19,10 @@ var Controler = {
      });
    },
    update: function(req, res){
-     var query = {name: /skol/i};
-     var mod = {
-         name: "Brahma",
-        alcohol: 4,
-        price: 6,
-        category: "pilsen"
-     }
-     var optional = {
-         upset: false,
-        mult: true
-     }
+     var query = {_id: req.params.id};
+     var mod = req.body;
 
-
-     Model.update(query, mod, optional, function(err, data){
+     Model.update(query, mod, function(err, data){
       if (err){
          console.log("erro", err);
          msg = err;
@@ -59,6 +49,23 @@ var Controler = {
          res.json(msg);
       });
    },
+
+   get: function(req, res){
+      var query = {_id: req.params.id};
+
+      Model.findOne(query, function(err, data){
+         if (err){
+         console.log("erro", err);
+         msg = err;
+         } else {
+            console.log("Listagem: ", data);
+            msg = data;
+         }
+         
+         res.json(msg);
+      });
+   },
+
    delete: function(req, res){
       var query = {name: /skol/i};
 
